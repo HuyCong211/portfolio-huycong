@@ -91,6 +91,16 @@ export default function MomentsGallery({ activities }: MomentsGalleryProps) {
                   </span>
                 </div>
 
+                {/* Multiple Images Counter Pill */}
+                {item.images && item.images.length > 1 && (
+                  <div className="absolute top-3 right-12">
+                    <span className="px-2 py-1 rounded-lg text-[10px] font-bold bg-slate-950/85 backdrop-blur-md text-cyan-300 border border-slate-700/60 flex items-center gap-1 shadow">
+                      <Camera className="w-3 h-3" />
+                      <span>{item.images.length} ảnh</span>
+                    </span>
+                  </div>
+                )}
+
                 {/* Enlarge icon on top-right */}
                 <div className="absolute top-3 right-3 w-8 h-8 rounded-lg bg-slate-900/80 backdrop-blur-md border border-slate-700/60 flex items-center justify-center text-slate-300 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
                   <Maximize2 className="w-4 h-4" />

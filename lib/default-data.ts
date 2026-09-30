@@ -208,6 +208,12 @@ export const initialPortfolioData: PortfolioData = {
       date: 'Tháng 10/2025',
       location: 'Hà Giang, Việt Nam',
       imageUrl: 'https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=1000&q=80',
+      images: [
+        'https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=1200&q=80',
+        'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80',
+        'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=1200&q=80',
+        'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=1200&q=80'
+      ],
       description: 'Chuyến đi khám phá cung đường đèo Mã Pí Lèng, sông Nho Quế xanh ngắt và những bản làng mộc mạc nơi địa đầu Tổ quốc. Chuyến đi giúp tái tạo năng lượng và mở rộng thế giới quan.',
       tags: ['Du lịch', 'Khám phá', 'Hà Giang', 'Tuổi trẻ']
     },
@@ -218,6 +224,11 @@ export const initialPortfolioData: PortfolioData = {
       date: 'Tháng 08/2025',
       location: 'Trụ sở Khách hàng - Cầu Giấy, Hà Nội',
       imageUrl: 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1000&q=80',
+      images: [
+        'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=80',
+        'https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=1200&q=80',
+        'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1200&q=80'
+      ],
       description: 'Trực tiếp điều phối buổi làm việc cùng Ban giám đốc và các Trưởng phòng ban khách hàng để lắng nghe các khúc mắc trong quản lý nhân sự, đề xuất giải pháp số hóa quy trình trên hệ thống.',
       tags: ['Công tác', 'Workshop', 'Khách hàng', 'BA in Action']
     },
@@ -228,6 +239,11 @@ export const initialPortfolioData: PortfolioData = {
       date: 'Tết Nguyên Đán 2026',
       location: 'Quê hương Thanh Hóa',
       imageUrl: 'https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=1000&q=80',
+      images: [
+        'https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=1200&q=80',
+        'https://images.unsplash.com/photo-1543269865-cbf427effbad?auto=format&fit=crop&w=1200&q=80',
+        'https://images.unsplash.com/photo-1516738901171-8eb4fc13bd20?auto=format&fit=crop&w=1200&q=80'
+      ],
       description: 'Trở về quê hương Thanh Hóa sau những ngày làm việc hăng say tại thủ đô, quây quần bên mâm cơm gia đình, nghe ông bà cha mẹ tâm tình và tận hưởng sự bình yên tuyệt đối.',
       tags: ['Gia đình', 'Thanh Hóa', 'Yêu thương', 'Bình yên']
     },
@@ -238,6 +254,10 @@ export const initialPortfolioData: PortfolioData = {
       date: 'Tháng 12/2025',
       location: 'Đà Nẵng, Việt Nam',
       imageUrl: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=1000&q=80',
+      images: [
+        'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=1200&q=80',
+        'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80'
+      ],
       description: 'Chuyến công tác kết hợp làm việc và hỗ trợ đào tạo người dùng cuối tại chi nhánh miền Trung. Trải nghiệm giải quyết bài toán nghiệp vụ thực tế tại hiện trường.',
       tags: ['Công tác', 'Đà Nẵng', 'Triển khai', 'FastWork']
     },
@@ -248,6 +268,11 @@ export const initialPortfolioData: PortfolioData = {
       date: 'Mùa hè 2025',
       location: 'Biển Cát Bà, Hải Phòng',
       imageUrl: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1000&q=80',
+      images: [
+        'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80',
+        'https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1200&q=80',
+        'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1200&q=80'
+      ],
       description: 'Những khoảnh khắc "làm hết sức, chơi hết mình" cùng các đồng nghiệp tài năng tại FastWork. Tinh thần đồng đội và sự gắn kết là động lực to lớn cho mỗi ngày làm việc.',
       tags: ['FastWork', 'Teambuilding', 'Đồng đội', 'Kỷ niệm']
     },
@@ -258,6 +283,10 @@ export const initialPortfolioData: PortfolioData = {
       date: 'Hàng tuần',
       location: 'Hoàn Kiếm, Hà Nội',
       imageUrl: 'https://images.unsplash.com/photo-1495446815901-a7297e633e8d?auto=format&fit=crop&w=1000&q=80',
+      images: [
+        'https://images.unsplash.com/photo-1495446815901-a7297e633e8d?auto=format&fit=crop&w=1200&q=80',
+        'https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=1200&q=80'
+      ],
       description: 'Thói quen quen thuộc mỗi sáng thứ Bảy tại Hà Nội: một ly cafe thơm, một cuốn sách về Business Analysis Body of Knowledge (BABOK) hoặc tiểu thuyết truyền cảm hứng.',
       tags: ['Sở thích', 'Đọc sách', 'Hà Nội', 'Chill']
     }

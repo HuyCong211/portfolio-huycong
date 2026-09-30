@@ -38,8 +38,46 @@ import {
   Clock,
   Phone,
   Copy,
-  Database
+  Database,
+  Images,
+  Star,
+  ImagePlus
 } from 'lucide-react';
+
+// Nén và chuyển đổi ảnh sang Base64 chuẩn WebP/JPEG chất lượng cao, dung lượng nhẹ
+function compressImage(file: File, maxWidth = 1200, maxHeight = 1200, quality = 0.8): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const img = new window.Image();
+      img.onload = () => {
+        const canvas = document.createElement('canvas');
+        let width = img.width;
+        let height = img.height;
+        if (width > height) {
+          if (width > maxWidth) {
+            height = Math.round((height * maxWidth) / width);
+            width = maxWidth;
+          }
+        } else {
+          if (height > maxHeight) {
+            width = Math.round((width * maxHeight) / height);
+            height = maxHeight;
+          }
+        }
+        canvas.width = width;
+        canvas.height = height;
+        const ctx = canvas.getContext('2d');
+        ctx?.drawImage(img, 0, 0, width, height);
+        resolve(canvas.toDataURL('image/jpeg', quality));
+      };
+      img.onerror = reject;
+      img.src = e.target?.result as string;
+    };
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
 
 export default function AdminPage() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -544,19 +582,58 @@ export default function AdminPage() {
                 />
               </div>
 
-              <div className="space-y-1.5 md:col-span-2">
-                <label className="text-xs font-semibold text-slate-300">Link ảnh đại diện (Avatar URL)</label>
-                <input
-                  type="text"
-                  value={portfolio.profile.avatarUrl}
-                  onChange={(e) =>
-                    setPortfolio({
-                      ...portfolio,
-                      profile: { ...portfolio.profile, avatarUrl: e.target.value }
-                    })
-                  }
-                  className="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-sm text-white focus:outline-none focus:border-indigo-500"
-                />
+              <div className="space-y-2 md:col-span-2 p-4 rounded-2xl bg-slate-900/60 border border-slate-800">
+                <div className="flex items-center justify-between">
+                  <label className="text-xs font-semibold text-slate-300">Ảnh đại diện (Avatar)</label>
+                  <label className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold cursor-pointer shadow">
+                    <Upload className="w-3.5 h-3.5" />
+                    <span>Chọn ảnh đại diện từ máy tính</span>
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={async (e) => {
+                        if (e.target.files && e.target.files[0]) {
+                          try {
+                            const dataUrl = await compressImage(e.target.files[0], 800, 800, 0.85);
+                            setPortfolio({
+                              ...portfolio,
+                              profile: { ...portfolio.profile, avatarUrl: dataUrl }
+                            });
+                          } catch (err) {
+                            alert('Lỗi khi tải ảnh');
+                          }
+                        }
+                      }}
+                      className="hidden"
+                    />
+                  </label>
+                </div>
+                <div className="flex items-center gap-4">
+                  <div className="w-16 h-16 rounded-xl overflow-hidden bg-slate-950 border border-slate-700 shrink-0">
+                    <img
+                      src={portfolio.profile.avatarUrl}
+                      alt="Avatar Preview"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="flex-1 space-y-1">
+                    <input
+                      type="text"
+                      placeholder="Hoặc dán đường link ảnh..."
+                      value={portfolio.profile.avatarUrl}
+                      onChange={(e) =>
+                        setPortfolio({
+                          ...portfolio,
+                          profile: { ...portfolio.profile, avatarUrl: e.target.value }
+                        })
+                      }
+                      className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-700 text-xs text-white"
+                    />
+                    <div className="text-[11px] text-slate-400">
+                      Hỗ trợ tải trực tiếp ảnh từ máy tính (tự động tối ưu dung lượng) hoặc dán link ảnh web.
+                    </div>
+                  </div>
+                </div>
               </div>
 
               <div className="space-y-1.5 md:col-span-2">
@@ -1008,17 +1085,23 @@ export default function AdminPage() {
                   className="p-5 rounded-2xl bg-slate-900 border border-slate-800 space-y-4 flex flex-col justify-between"
                 >
                   <div className="space-y-3">
-                    {/* Image Preview & URL input */}
+                    {/* Cover Image & Album Preview */}
                     <div className="relative aspect-[16/10] rounded-xl overflow-hidden bg-slate-950 border border-slate-800">
                       <img
                         src={item.imageUrl}
                         alt={item.title}
                         className="w-full h-full object-cover"
                       />
+                      <div className="absolute top-2 left-2">
+                        <span className="px-2.5 py-1 rounded-md text-[10px] font-bold bg-slate-950/80 backdrop-blur-md text-amber-300 border border-amber-500/40 flex items-center gap-1 shadow">
+                          <Star className="w-3 h-3 fill-amber-300" />
+                          <span>Ảnh bìa đại diện</span>
+                        </span>
+                      </div>
                       <div className="absolute top-2 right-2">
                         <button
                           onClick={() => {
-                            if (confirm('Xóa ảnh khoảnh khắc này?')) {
+                            if (confirm('Xóa toàn bộ khoảnh khắc này?')) {
                               setPortfolio({
                                 ...portfolio,
                                 activities: portfolio.activities.filter((_, i) => i !== idx)
@@ -1026,26 +1109,128 @@ export default function AdminPage() {
                             }
                           }}
                           className="p-2 rounded-lg bg-rose-950/80 text-rose-300 hover:bg-rose-900 border border-rose-700 shadow"
-                          title="Xóa ảnh"
+                          title="Xóa khoảnh khắc"
                         >
                           <Trash2 className="w-3.5 h-3.5" />
                         </button>
                       </div>
                     </div>
 
-                    <div className="space-y-1">
-                      <label className="text-[11px] text-slate-400">Đường dẫn hình ảnh (Image URL)</label>
-                      <input
-                        type="text"
-                        value={item.imageUrl}
-                        onChange={(e) => {
-                          const updated = [...portfolio.activities];
-                          updated[idx].imageUrl = e.target.value;
-                          setPortfolio({ ...portfolio, activities: updated });
-                        }}
-                        placeholder="https://..."
-                        className="w-full px-3 py-1.5 rounded-lg bg-slate-950 border border-slate-700 text-xs text-white"
-                      />
+                    {/* Multi-image Album Uploader */}
+                    <div className="p-3 rounded-xl bg-slate-950/70 border border-slate-800 space-y-2.5">
+                      <div className="flex flex-wrap items-center justify-between gap-2">
+                        <div className="text-xs font-semibold text-cyan-400 flex items-center gap-1.5">
+                          <Images className="w-3.5 h-3.5" />
+                          <span>
+                            Album chi tiết ({item.images && item.images.length > 0 ? item.images.length : 1} ảnh)
+                          </span>
+                        </div>
+
+                        <label className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold cursor-pointer shadow transition-all">
+                          <Upload className="w-3.5 h-3.5" />
+                          <span>Tải ảnh từ máy tính (chọn 1 hoặc nhiều ảnh)</span>
+                          <input
+                            type="file"
+                            multiple
+                            accept="image/*"
+                            onChange={async (e) => {
+                              if (e.target.files && e.target.files.length > 0) {
+                                const files = Array.from(e.target.files);
+                                try {
+                                  const dataUrls = await Promise.all(
+                                    files.map((f) => compressImage(f, 1200, 1200, 0.82))
+                                  );
+                                  const currentImages = item.images && item.images.length > 0
+                                    ? [...item.images]
+                                    : (item.imageUrl ? [item.imageUrl] : []);
+                                  const updatedImages = [...currentImages, ...dataUrls];
+                                  const updated = [...portfolio.activities];
+                                  updated[idx].images = updatedImages;
+                                  if (!updated[idx].imageUrl && dataUrls.length > 0) {
+                                    updated[idx].imageUrl = dataUrls[0];
+                                  }
+                                  setPortfolio({ ...portfolio, activities: updated });
+                                } catch (err) {
+                                  alert('Lỗi khi nén ảnh.');
+                                }
+                              }
+                            }}
+                            className="hidden"
+                          />
+                        </label>
+                      </div>
+
+                      {/* Thumbnails of all images in this moment */}
+                      <div className="grid grid-cols-4 sm:grid-cols-5 gap-2 pt-1">
+                        {(item.images && item.images.length > 0 ? item.images : [item.imageUrl]).map((imgSrc, imgIdx) => {
+                          const isCover = item.imageUrl === imgSrc;
+                          return (
+                            <div
+                              key={imgIdx}
+                              className={`relative aspect-square rounded-lg overflow-hidden border-2 group/thumb ${
+                                isCover ? 'border-amber-400 ring-2 ring-amber-400/30' : 'border-slate-800'
+                              }`}
+                            >
+                              <img src={imgSrc} alt={`Ảnh ${imgIdx + 1}`} className="w-full h-full object-cover" />
+                              
+                              {/* Hover controls */}
+                              <div className="absolute inset-0 bg-black/70 opacity-0 group-hover/thumb:opacity-100 transition-opacity flex flex-col items-center justify-center gap-1 p-1">
+                                {!isCover && (
+                                  <button
+                                    onClick={() => {
+                                      const updated = [...portfolio.activities];
+                                      updated[idx].imageUrl = imgSrc;
+                                      setPortfolio({ ...portfolio, activities: updated });
+                                    }}
+                                    className="p-1 rounded bg-amber-500 hover:bg-amber-400 text-slate-950 text-[9px] font-bold w-full text-center"
+                                    title="Đặt làm ảnh bìa"
+                                  >
+                                    Làm bìa
+                                  </button>
+                                )}
+                                <button
+                                  onClick={() => {
+                                    const currentImages = item.images && item.images.length > 0 ? [...item.images] : [item.imageUrl];
+                                    const filteredImgs = currentImages.filter((_, i) => i !== imgIdx);
+                                    const updated = [...portfolio.activities];
+                                    updated[idx].images = filteredImgs;
+                                    if (isCover && filteredImgs.length > 0) {
+                                      updated[idx].imageUrl = filteredImgs[0];
+                                    }
+                                    setPortfolio({ ...portfolio, activities: updated });
+                                  }}
+                                  className="p-1 rounded bg-rose-600 hover:bg-rose-500 text-white text-[9px] font-bold w-full text-center"
+                                  title="Xóa ảnh này khỏi album"
+                                >
+                                  Xóa
+                                </button>
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+
+                      {/* Add image URL input */}
+                      <div className="pt-1.5 flex items-center gap-2">
+                        <input
+                          type="text"
+                          placeholder="Hoặc dán thêm URL ảnh rồi nhấn Enter..."
+                          onKeyDown={(e) => {
+                            if (e.key === 'Enter') {
+                              e.preventDefault();
+                              const val = (e.target as HTMLInputElement).value.trim();
+                              if (val) {
+                                const currentImages = item.images && item.images.length > 0 ? [...item.images] : [item.imageUrl];
+                                const updated = [...portfolio.activities];
+                                updated[idx].images = [...currentImages, val];
+                                setPortfolio({ ...portfolio, activities: updated });
+                                (e.target as HTMLInputElement).value = '';
+                              }
+                            }
+                          }}
+                          className="flex-1 px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-700 text-xs text-white placeholder-slate-500"
+                        />
+                      </div>
                     </div>
 
                     <div className="space-y-1">

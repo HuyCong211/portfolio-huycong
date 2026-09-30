@@ -35,6 +35,7 @@ export interface ActivityMoment {
   date: string;
   location: string;
   imageUrl: string;
+  images?: string[]; // Danh sách nhiều hình ảnh trong một khoảnh khắc
   description: string;
   tags: string[];
 }
