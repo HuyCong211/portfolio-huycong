@@ -1,0 +1,309 @@
+{
+  "portfolio": {
+    "profile": {
+      "name": "Nguyễn Huy Công",
+      "birthDate": "21/01/2004",
+      "title": "Chuyên viên Phân tích Nghiệp vụ CNTT (IT Business Analyst)",
+      "hometown": "Thanh Hóa",
+      "currentLocation": "Hà Nội",
+      "company": "Công ty TNHH Công nghệ FastWork Việt Nam",
+      "education": "Ngành Hệ thống thông tin - Trường Công nghệ thông tin và Truyền thông - Đại học Công nghiệp Hà Nội (HaUI)",
+      "hobbies": [
+        "Đi du lịch khám phá các vùng đất mới",
+        "Xem phim điện ảnh & phim công nghệ/trinh thám",
+        "Đọc sách chuyên ngành BA, phát triển bản thân & tâm lý học hành vi",
+        "Chụp ảnh lưu giữ khoảnh khắc đời thường",
+        "Giao lưu công nghệ & học hỏi kiến thức hệ thống"
+      ],
+      "bioShort": "Một IT Business Analyst nhiệt huyết, cầu tiến với tư duy logic sắc bén, kỹ năng khơi gợi yêu cầu chuẩn xác và đam mê chuyển hóa bài toán kinh doanh thành giải pháp phần mềm tối ưu.",
+      "bioLong": "Xin chào! Tôi là Nguyễn Huy Công, sinh ngày 21/01/2004, sinh ra tại Thanh Hóa và hiện đang sinh sống, làm việc tại Hà Nội. Tốt nghiệp ngành Hệ thống thông tin tại Trường Công nghệ thông tin & Truyền thông - Đại học Công nghiệp Hà Nội (HaUI), tôi hiện đang đảm nhiệm vị trí Chuyên viên Phân tích Nghiệp vụ CNTT tại Công ty TNHH Công nghệ FastWork Việt Nam.\n\nVới vai trò BA, tôi đóng vai trò là \"chiếc cầu nối\" vững chắc giữa khách hàng/các bên liên quan (Business Stakeholders) và đội ngũ phát triển kỹ thuật (Developers/QA). Tôi luôn hướng tới việc thấu hiểu tường tận nỗi đau của doanh nghiệp, từ đó thiết kế nên những quy trình nghiệp vụ tinh gọn, tài liệu đặc tả chuẩn chỉ và sản phẩm số mang lại giá trị thực tiễn cao nhất.",
+      "avatarUrl": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80",
+      "coverUrl": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1600&q=80",
+      "email": "nguyenhuycong.work@gmail.com",
+      "phone": "0987 654 321",
+      "socials": {
+        "facebook": "https://facebook.com/huycong.itba",
+        "tiktok": "https://tiktok.com/@huycong_ba",
+        "instagram": "https://instagram.com/huycong_2101",
+        "linkedin": "https://linkedin.com/in/nguyenhuycong-ba",
+        "github": "https://github.com/nguyenhuycong"
+      },
+      "resumeUrl": "#"
+    },
+    "strengths": [
+      {
+        "id": "strength-1",
+        "title": "Khảo sát & Khơi gợi Yêu cầu (Requirement Elicitation)",
+        "category": "core",
+        "level": 95,
+        "iconName": "MessageSquareText",
+        "summary": "Kỹ năng lắng nghe thấu cảm, điều phối phỏng vấn, workshop và khai thác triệt để \"nỗi đau\" (pain points) của khách hàng doanh nghiệp.",
+        "details": [
+          "Tổ chức và điều phối các buổi Requirement Workshop chuyên sâu với đối tác",
+          "Kỹ thuật đặt câu hỏi 5 Whys, Interviewing, Brainstorming để tìm căn nguyên vấn đề",
+          "Phân loại và ưu tiên yêu cầu kinh doanh theo mô hình MoSCoW & Kano"
+        ]
+      },
+      {
+        "id": "strength-2",
+        "title": "Mô hình hóa Quy trình Nghiệp vụ (BPMN & Flowcharts)",
+        "category": "core",
+        "level": 92,
+        "iconName": "GitBranch",
+        "summary": "Biến các quy trình vận hành phức tạp thành sơ đồ trực quan, chuẩn hóa theo chuẩn quốc tế BPMN 2.0, Flowchart, Swimlane.",
+        "details": [
+          "Vẽ sơ đồ quy trình hiện tại (As-Is) và đề xuất quy trình cải tiến tương lai (To-Be)",
+          "Xây dựng Use Case Diagrams, Activity Diagrams, Sequence Diagrams",
+          "Thành thạo công cụ Draw.io, Lucidchart, Miro, Bizagi Modeler"
+        ]
+      },
+      {
+        "id": "strength-3",
+        "title": "Xây dựng Tài liệu Đặc tả Chuẩn quốc tế (BRD, SRS, URD)",
+        "category": "technical",
+        "level": 94,
+        "iconName": "FileSpreadsheet",
+        "summary": "Soạn thảo tài liệu đặc tả rõ ràng, logic, không mập mờ, giúp lập trình viên và kiểm thử viên phát triển chính xác 100%.",
+        "details": [
+          "Viết Business Requirements Document (BRD), Software Requirements Specification (SRS)",
+          "Xây dựng User Stories theo chuẩn INVEST cùng Acceptance Criteria (Given-When-Then)",
+          "Quản lý ma trận truy vết yêu cầu (Requirement Traceability Matrix - RTM)"
+        ]
+      },
+      {
+        "id": "strength-4",
+        "title": "Thiết kế Wireframe & Prototyping (UI/UX Thinking)",
+        "category": "technical",
+        "level": 88,
+        "iconName": "LayoutTemplate",
+        "summary": "Tư duy trải nghiệm người dùng hiện đại, phác thảo giao diện trực quan và tương tác mẫu trước khi chuyển giao lập trình.",
+        "details": [
+          "Thiết kế Low-fidelity & High-fidelity Wireframes trên Figma, Axure, Balsamiq",
+          "Tối ưu hóa hành trình người dùng (User Journey Mapping, Information Architecture)",
+          "Thu thập phản hồi nhanh của người dùng cuối thông qua bản mẫu tương tác clickable"
+        ]
+      },
+      {
+        "id": "strength-5",
+        "title": "Tư duy Hệ thống & Phân tích Dữ liệu (SQL & System Modeling)",
+        "category": "technical",
+        "level": 89,
+        "iconName": "Database",
+        "summary": "Nền tảng vững chắc từ ngành Hệ thống thông tin HaUI: đọc hiểu cấu trúc CSDL, viết truy vấn SQL và phân tích luồng API.",
+        "details": [
+          "Thiết kế sơ đồ quan hệ thực thể (ERD), Data Dictionary cho các phân hệ",
+          "Truy vấn và khai thác dữ liệu báo cáo với SQL (PostgreSQL, MySQL, SQL Server)",
+          "Đặc tả quy chuẩn API Integration (RESTful API, Request/Response payload, Data mapping)"
+        ]
+      },
+      {
+        "id": "strength-6",
+        "title": "Vận hành Agile/Scrum & Quản lý Backlog",
+        "category": "management",
+        "level": 90,
+        "iconName": "Kanban",
+        "summary": "Đồng hành chặt chẽ cùng Product Owner và Scrum Team để tối ưu hóa giá trị bàn giao trong từng Sprint phát triển.",
+        "details": [
+          "Refinement & Prioritization cho Product Backlog, phân rã Epic thành User Stories",
+          "Phối hợp tổ chức Sprint Planning, Daily Standup, Sprint Review & Retrospective",
+          "Tổ chức nghiệm thu chấp nhận người dùng (User Acceptance Testing - UAT) thành công"
+        ]
+      },
+      {
+        "id": "strength-7",
+        "title": "Cầu nối Stakeholder & Giải quyết Xung đột (Communication)",
+        "category": "soft-skills",
+        "level": 96,
+        "iconName": "Users",
+        "summary": "Khả năng \"dịch thuật\" xuất sắc giữa ngôn ngữ kinh doanh thương mại và ngôn ngữ kỹ thuật lập trình.",
+        "details": [
+          "Thương thảo và làm rõ kỳ vọng của các phòng ban nghiệp vụ",
+          "Hạn chế tối đa tình trạng \"Scope Creep\" (phình phạm vi dự án)",
+          "Thuyết trình giải pháp mạch lạc, tự tin trước ban lãnh đạo doanh nghiệp"
+        ]
+      },
+      {
+        "id": "strength-8",
+        "title": "Nghiệp vụ Quản trị Doanh nghiệp SaaS (SaaS & B2B Solutions)",
+        "category": "core",
+        "level": 91,
+        "iconName": "Briefcase",
+        "summary": "Kinh nghiệm thực chiến từ FastWork Việt Nam trong các phân hệ quản lý công việc, nhân sự (HRM), quan hệ khách hàng (CRM).",
+        "details": [
+          "Am hiểu sâu sắc về SaaS B2B, quản lý quy trình phê duyệt điện tử (E-approval)",
+          "Đặc tả tính năng chấm công, tính lương, KPI, OKR và quản lý dự án đa người dùng",
+          "Tư duy phân quyền bảo mật nhiều cấp (Role-based access control - RBAC)"
+        ]
+      }
+    ],
+    "journey": [
+      {
+        "id": "journey-1",
+        "period": "2024 - Hiện tại",
+        "role": "Chuyên viên Phân tích Nghiệp vụ CNTT (IT Business Analyst)",
+        "organization": "Công ty TNHH Công nghệ FastWork Việt Nam",
+        "location": "Hà Nội",
+        "type": "work",
+        "isCurrent": true,
+        "description": "Phụ trách nghiên cứu, phân tích nghiệp vụ và xây dựng giải pháp phần mềm quản trị doanh nghiệp toàn diện (Work Management, HRM, CRM, E-Office).",
+        "highlights": [
+          "Khảo sát và phân tích yêu cầu chuyển đổi số cho hàng chục khách hàng doanh nghiệp vừa và lớn",
+          "Chủ trì biên soạn hơn 30+ bộ tài liệu SRS, User Story và thiết kế luồng quy trình BPMN cho các phân hệ trọng điểm",
+          "Phối hợp nhịp nhàng với đội ngũ lập trình viên và tester hoàn thành 100% các kỳ release đúng tiến độ",
+          "Hỗ trợ đào tạo, demo sản phẩm và trực tiếp hướng dẫn triển khai cho khách hàng"
+        ]
+      },
+      {
+        "id": "journey-2",
+        "period": "2022 - 2026",
+        "role": "Kỹ sư / Cử nhân Hệ thống Thông tin",
+        "organization": "Trường Công nghệ thông tin và Truyền thông - Đại học Công nghiệp Hà Nội (HaUI)",
+        "location": "Hà Nội",
+        "type": "education",
+        "isCurrent": false,
+        "description": "Được đào tạo bài bản và chuyên sâu về phân tích thiết kế hệ thống, cơ sở dữ liệu doanh nghiệp, kiến trúc phần mềm và quản trị dự án CNTT.",
+        "highlights": [
+          "Tốt nghiệp Ngành Hệ thống thông tin với đề tài giải pháp số hóa quy trình quản trị doanh nghiệp",
+          "Tham gia tích cực vào các đề tài nghiên cứu khoa học sinh viên và câu lạc bộ học thuật",
+          "Nền tảng vững vàng về cơ sở dữ liệu quan hệ, SQL, UML, kiến trúc vi dịch vụ và bảo mật thông tin"
+        ]
+      },
+      {
+        "id": "journey-3",
+        "period": "2023 - 2024",
+        "role": "Thực tập sinh BA & Dự án Chuyển đổi số",
+        "organization": "Dự án Hệ thống phần mềm & Đối tác Doanh nghiệp",
+        "location": "Hà Nội & Thanh Hóa",
+        "type": "achievement",
+        "isCurrent": false,
+        "description": "Tích lũy kinh nghiệm thực tế sớm thông qua việc tham gia vào các dự án phân tích phần mềm quản lý kho, bán hàng và hóa đơn điện tử.",
+        "highlights": [
+          "Tiếp cận sớm phương pháp Scrum/Agile trong môi trường phát triển phần mềm chuyên nghiệp",
+          "Hoàn thành chứng chỉ chuyên môn Business Analysis Foundation & Agile Practices",
+          "Rèn luyện tư duy phản biện và khả năng giải quyết vấn đề dưới áp lực thời gian"
+        ]
+      },
+      {
+        "id": "journey-4",
+        "period": "2019 - 2022",
+        "role": "Học sinh Chuyên cần & Đam mê Công nghệ",
+        "organization": "Trường THPT tại Thanh Hóa",
+        "location": "Thanh Hóa",
+        "type": "education",
+        "isCurrent": false,
+        "description": "Giai đoạn nuôi dưỡng ước mơ theo đuổi ngành Công nghệ thông tin, định hình tính cách cẩn thận, ham học hỏi và tinh thần trách nhiệm.",
+        "highlights": [
+          "Thành tích học tập xuất sắc các môn Tự nhiên (Toán, Tin học)",
+          "Đạt điểm cao trong kỳ thi Tốt nghiệp THPT và xét tuyển thẳng vào Đại học Công nghiệp Hà Nội",
+          "Tích cực tham gia các hoạt động Đoàn trường và tình nguyện vì cộng đồng"
+        ]
+      }
+    ],
+    "activities": [
+      {
+        "id": "act-1",
+        "title": "Hành trình chinh phục Hà Giang - Mã Pí Lèng hùng vĩ",
+        "category": "travel",
+        "date": "Tháng 10/2025",
+        "location": "Hà Giang, Việt Nam",
+        "imageUrl": "https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=1000&q=80",
+        "description": "Chuyến đi khám phá cung đường đèo Mã Pí Lèng, sông Nho Quế xanh ngắt và những bản làng mộc mạc nơi địa đầu Tổ quốc. Chuyến đi giúp tái tạo năng lượng và mở rộng thế giới quan.",
+        "tags": [
+          "Du lịch",
+          "Khám phá",
+          "Hà Giang",
+          "Tuổi trẻ"
+        ]
+      },
+      {
+        "id": "act-2",
+        "title": "Buổi Workshop khảo sát yêu cầu khách hàng doanh nghiệp",
+        "category": "work",
+        "date": "Tháng 08/2025",
+        "location": "Trụ sở Khách hàng - Cầu Giấy, Hà Nội",
+        "imageUrl": "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1000&q=80",
+        "description": "Trực tiếp điều phối buổi làm việc cùng Ban giám đốc và các Trưởng phòng ban khách hàng để lắng nghe các khúc mắc trong quản lý nhân sự, đề xuất giải pháp số hóa quy trình trên hệ thống.",
+        "tags": [
+          "Công tác",
+          "Workshop",
+          "Khách hàng",
+          "BA in Action"
+        ]
+      },
+      {
+        "id": "act-3",
+        "title": "Ấm áp bữa cơm sum họp cùng gia đình dịp Tết",
+        "category": "family",
+        "date": "Tết Nguyên Đán 2026",
+        "location": "Quê hương Thanh Hóa",
+        "imageUrl": "https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=1000&q=80",
+        "description": "Trở về quê hương Thanh Hóa sau những ngày làm việc hăng say tại thủ đô, quây quần bên mâm cơm gia đình, nghe ông bà cha mẹ tâm tình và tận hưởng sự bình yên tuyệt đối.",
+        "tags": [
+          "Gia đình",
+          "Thanh Hóa",
+          "Yêu thương",
+          "Bình yên"
+        ]
+      },
+      {
+        "id": "act-4",
+        "title": "Chuyến công tác triển khai dự án tại Đà Nẵng",
+        "category": "work",
+        "date": "Tháng 12/2025",
+        "location": "Đà Nẵng, Việt Nam",
+        "imageUrl": "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=1000&q=80",
+        "description": "Chuyến công tác kết hợp làm việc và hỗ trợ đào tạo người dùng cuối tại chi nhánh miền Trung. Trải nghiệm giải quyết bài toán nghiệp vụ thực tế tại hiện trường.",
+        "tags": [
+          "Công tác",
+          "Đà Nẵng",
+          "Triển khai",
+          "FastWork"
+        ]
+      },
+      {
+        "id": "act-5",
+        "title": "Teambuilding bùng nổ cùng FastWork Việt Nam",
+        "category": "company",
+        "date": "Mùa hè 2025",
+        "location": "Biển Cát Bà, Hải Phòng",
+        "imageUrl": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1000&q=80",
+        "description": "Những khoảnh khắc \"làm hết sức, chơi hết mình\" cùng các đồng nghiệp tài năng tại FastWork. Tinh thần đồng đội và sự gắn kết là động lực to lớn cho mỗi ngày làm việc.",
+        "tags": [
+          "FastWork",
+          "Teambuilding",
+          "Đồng đội",
+          "Kỷ niệm"
+        ]
+      },
+      {
+        "id": "act-6",
+        "title": "Cuối tuần thư thái: Cà phê, đọc sách chuyên môn tại phố cổ",
+        "category": "family",
+        "date": "Hàng tuần",
+        "location": "Hoàn Kiếm, Hà Nội",
+        "imageUrl": "https://images.unsplash.com/photo-1495446815901-a7297e633e8d?auto=format&fit=crop&w=1000&q=80",
+        "description": "Thói quen quen thuộc mỗi sáng thứ Bảy tại Hà Nội: một ly cafe thơm, một cuốn sách về Business Analysis Body of Knowledge (BABOK) hoặc tiểu thuyết truyền cảm hứng.",
+        "tags": [
+          "Sở thích",
+          "Đọc sách",
+          "Hà Nội",
+          "Chill"
+        ]
+      }
+    ],
+    "lastUpdated": "2026-09-30T03:59:28.686Z"
+  },
+  "messages": [
+    {
+      "id": "msg-sample-1",
+      "fullName": "Trần Minh Đức",
+      "email": "duc.tran@techcorp.vn",
+      "phone": "0912 345 678",
+      "subject": "Trao đổi về cơ hội hợp tác dự án ERP cho chuỗi bán lẻ",
+      "message": "Chào Huy Công, mình theo dõi các bài chia sẻ phân tích quy trình của bạn và rất ấn tượng với phong cách làm việc logic. Bên mình đang có dự án nâng cấp phân hệ quản trị kho và chuỗi cung ứng, rất mong có dịp mời bạn cafe trao đổi thêm về dự án này!",
+      "createdAt": "2026-09-28T03:59:28.686Z",
+      "read": false
+    }
+  ],
+  "adminPin": "2101"
+}
