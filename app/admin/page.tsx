@@ -234,7 +234,7 @@ export default function AdminPage() {
                 <input
                   type="password"
                   required
-                  placeholder="Nhập mã PIN (Mặc định: 2101)"
+                  placeholder="Nhập mã PIN"
                   value={pinInput}
                   onChange={(e) => setPinInput(e.target.value)}
                   className="w-full px-4 py-3 pl-11 rounded-xl bg-slate-950 border border-slate-700 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 tracking-widest text-center"
@@ -262,10 +262,10 @@ export default function AdminPage() {
           <div className="p-3.5 rounded-2xl bg-slate-950/60 border border-slate-800 text-[11px] text-slate-400 space-y-1">
             <div className="font-semibold text-slate-300 flex items-center gap-1.5">
               <Sparkles className="w-3.5 h-3.5 text-indigo-400" />
-              <span>Gợi ý mã PIN mặc định:</span>
+              <span>Gợi ý :</span>
             </div>
             <p>
-              Mã PIN ban đầu được thiết lập là <strong>2101</strong> (ngày sinh 21/01 của Huy Công).
+              <strong>2101</strong> ().
             </p>
           </div>
 

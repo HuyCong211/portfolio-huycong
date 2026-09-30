@@ -9,7 +9,7 @@ export async function POST(req: NextRequest) {
     const isMatch = pin === db.adminPin || pin === '2101';
 
     if (!isMatch) {
-      return NextResponse.json({ success: false, error: 'Mã PIN không đúng (Mặc định: 2101)' }, { status: 401 });
+      return NextResponse.json({ success: false, error: 'Mã PIN không đúng' }, { status: 401 });
     }
 
     if (action === 'change_pin' && newPin && newPin.length >= 4) {
