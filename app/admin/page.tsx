@@ -169,9 +169,11 @@ export default function AdminPage() {
   // Save all portfolio data
   const handleSaveAll = async () => {
     setSaveStatus('saving');
+    // Thêm timestamp để đánh dấu đây là dữ liệu đã được chỉnh sửa (không phải mặc định)
+    const portfolioWithTimestamp = { ...portfolio, _savedAt: new Date().toISOString() };
     // Luôn lưu tức thì vào LocalStorage để trình duyệt lập tức hiển thị nội dung mới nhất
     try {
-      localStorage.setItem('huycong_portfolio_data_v1', JSON.stringify(portfolio));
+      localStorage.setItem('huycong_portfolio_data_v1', JSON.stringify(portfolioWithTimestamp));
     } catch (e) {
       console.warn('LocalStorage save failed', e);
     }
@@ -180,7 +182,7 @@ export default function AdminPage() {
       const res = await fetch('/api/profile', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ portfolio, pin: currentPin })
+        body: JSON.stringify({ portfolio: portfolioWithTimestamp, pin: currentPin })
       });
       const data = await res.json();
 

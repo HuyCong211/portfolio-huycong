@@ -14,28 +14,40 @@ export function usePortfolio() {
   useEffect(() => {
     async function loadData() {
       try {
-        // First check local storage for instant hydration
+        // Ưu tiên dữ liệu đã lưu trong localStorage (do Admin CMS cập nhật)
         const cached = localStorage.getItem(STORAGE_KEY);
         if (cached) {
           try {
-            setData(JSON.parse(cached));
+            const parsed = JSON.parse(cached);
+            setData(parsed);
+            // Đã có dữ liệu local → không cần gọi API (tránh bị ghi đè bởi dữ liệu mặc định)
+            setLoading(false);
+            return;
           } catch (e) {
             console.error('Failed to parse cached portfolio', e);
+            // Nếu parse lỗi → xoá cache và thử lấy từ API
+            localStorage.removeItem(STORAGE_KEY);
           }
         }
 
-        // Fetch latest from API
-        const res = await fetch('/api/profile');
-        if (res.ok) {
-          const remoteData = await res.json();
-          if (remoteData && remoteData.profile) {
-            setData(remoteData);
-            localStorage.setItem(STORAGE_KEY, JSON.stringify(remoteData));
+        // Không có cache → thử lấy từ API (chỉ dùng nếu server có Vercel KV)
+        try {
+          const res = await fetch('/api/profile');
+          if (res.ok) {
+            const remoteData = await res.json();
+            // Chỉ dùng API data nếu nó đã được lưu thực sự (có field lastSaved)
+            // để tránh dùng dữ liệu mặc định từ server
+            if (remoteData && remoteData.profile && remoteData._savedAt) {
+              setData(remoteData);
+              localStorage.setItem(STORAGE_KEY, JSON.stringify(remoteData));
+            }
           }
+        } catch (apiErr) {
+          console.warn('API unavailable, using default data');
         }
       } catch (err: any) {
-        console.warn('Could not fetch remote portfolio data, using local/default:', err);
-        setError(err.message || 'Không thể tải dữ liệu từ máy chủ');
+        console.warn('Could not load portfolio data:', err);
+        setError(err.message || 'Không thể tải dữ liệu');
       } finally {
         setLoading(false);
       }
