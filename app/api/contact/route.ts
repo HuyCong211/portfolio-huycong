@@ -1,10 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getDatabase, saveDatabase } from '@/lib/server-storage';
+import { getDatabaseAsync, saveDatabaseAsync } from '@/lib/server-storage';
 import { ContactMessage } from '@/lib/types';
+
+export const dynamic = 'force-dynamic';
 
 export async function GET(req: NextRequest) {
   const pin = req.nextUrl.searchParams.get('pin');
-  const db = getDatabase();
+  const db = await getDatabaseAsync();
 
   if (pin !== db.adminPin && pin !== '2101') {
     return NextResponse.json({ error: 'Không có quyền truy cập' }, { status: 401 });
@@ -33,9 +35,9 @@ export async function POST(req: NextRequest) {
       read: false
     };
 
-    const db = getDatabase();
+    const db = await getDatabaseAsync();
     db.messages.unshift(newMessage);
-    saveDatabase(db);
+    await saveDatabaseAsync(db);
 
     return NextResponse.json({ success: true, message: 'Gửi tin nhắn thành công! Huy Công sẽ phản hồi bạn trong thời gian sớm nhất.' });
   } catch (error) {
@@ -49,7 +51,7 @@ export async function DELETE(req: NextRequest) {
     const id = searchParams.get('id');
     const pin = searchParams.get('pin');
 
-    const db = getDatabase();
+    const db = await getDatabaseAsync();
     if (pin !== db.adminPin && pin !== '2101') {
       return NextResponse.json({ error: 'Mã PIN bảo mật không chính xác' }, { status: 401 });
     }
@@ -59,7 +61,7 @@ export async function DELETE(req: NextRequest) {
     }
 
     db.messages = db.messages.filter((m) => m.id !== id);
-    saveDatabase(db);
+    await saveDatabaseAsync(db);
 
     return NextResponse.json({ success: true });
   } catch (error) {

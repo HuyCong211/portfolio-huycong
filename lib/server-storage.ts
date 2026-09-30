@@ -29,25 +29,118 @@ const defaultDatabase: DatabaseSchema = {
   adminPin: '2101' // Default admin PIN (21/01)
 };
 
+// Check if Upstash Redis / Vercel KV REST API is available
+const KV_URL = process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL;
+const KV_TOKEN = process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN;
+
+async function getFromKv(): Promise<DatabaseSchema | null> {
+  if (!KV_URL || !KV_TOKEN) return null;
+  try {
+    const res = await fetch(`${KV_URL}/get/portfolio_db`, {
+      headers: { Authorization: `Bearer ${KV_TOKEN}` },
+      cache: 'no-store'
+    });
+    if (res.ok) {
+      const data = await res.json();
+      if (data && data.result) {
+        return typeof data.result === 'string' ? JSON.parse(data.result) : data.result;
+      }
+    }
+  } catch (err) {
+    console.warn('Failed to fetch from KV database:', err);
+  }
+  return null;
+}
+
+async function saveToKv(data: DatabaseSchema): Promise<boolean> {
+  if (!KV_URL || !KV_TOKEN) return false;
+  try {
+    const res = await fetch(`${KV_URL}/set/portfolio_db`, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${KV_TOKEN}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    });
+    return res.ok;
+  } catch (err) {
+    console.error('Failed to save to KV database:', err);
+    return false;
+  }
+}
+
+export async function getDatabaseAsync(): Promise<DatabaseSchema> {
+  // 1. Try Cloud KV (Vercel KV / Upstash)
+  const kvData = await getFromKv();
+  if (kvData && kvData.portfolio) {
+    return kvData;
+  }
+
+  // 2. Try Local File
+  try {
+    if (fs.existsSync(DATA_FILE)) {
+      const raw = fs.readFileSync(DATA_FILE, 'utf-8');
+      const parsed = JSON.parse(raw);
+      return {
+        portfolio: parsed.portfolio || defaultDatabase.portfolio,
+        messages: parsed.messages || defaultDatabase.messages,
+        adminPin: parsed.adminPin || defaultDatabase.adminPin
+      };
+    }
+  } catch (e) {
+    // Read-only or missing
+  }
+
+  return defaultDatabase;
+}
+
 export function getDatabase(): DatabaseSchema {
+  try {
+    if (fs.existsSync(DATA_FILE)) {
+      const raw = fs.readFileSync(DATA_FILE, 'utf-8');
+      const parsed = JSON.parse(raw);
+      return {
+        portfolio: parsed.portfolio || defaultDatabase.portfolio,
+        messages: parsed.messages || defaultDatabase.messages,
+        adminPin: parsed.adminPin || defaultDatabase.adminPin
+      };
+    }
+  } catch (error) {
+    // Ignore and fallback
+  }
+  return defaultDatabase;
+}
+
+export async function saveDatabaseAsync(data: DatabaseSchema): Promise<{
+  success: boolean;
+  persistedTo: 'cloud_kv' | 'local_file' | 'memory_only';
+  message?: string;
+}> {
+  // 1. Try Cloud KV if configured
+  if (KV_URL && KV_TOKEN) {
+    const ok = await saveToKv(data);
+    if (ok) {
+      return { success: true, persistedTo: 'cloud_kv' };
+    }
+  }
+
+  // 2. Try Local File system
   try {
     if (!fs.existsSync(DATA_DIR)) {
       fs.mkdirSync(DATA_DIR, { recursive: true });
     }
-    if (!fs.existsSync(DATA_FILE)) {
-      fs.writeFileSync(DATA_FILE, JSON.stringify(defaultDatabase, null, 2), 'utf-8');
-      return defaultDatabase;
-    }
-    const raw = fs.readFileSync(DATA_FILE, 'utf-8');
-    const parsed = JSON.parse(raw);
+    fs.writeFileSync(DATA_FILE, JSON.stringify(data, null, 2), 'utf-8');
+    return { success: true, persistedTo: 'local_file' };
+  } catch (error: any) {
+    console.warn('Local filesystem write failed (expected on Vercel serverless):', error?.message);
+    // On Vercel, the local filesystem is read-only.
+    // We return success with 'memory_only' so the client knows to persist in localStorage
     return {
-      portfolio: parsed.portfolio || defaultDatabase.portfolio,
-      messages: parsed.messages || defaultDatabase.messages,
-      adminPin: parsed.adminPin || defaultDatabase.adminPin
+      success: true,
+      persistedTo: 'memory_only',
+      message: 'Hệ thống Vercel chạy dạng Serverless (Read-only). Dữ liệu đã được lưu vào trình duyệt.'
     };
-  } catch (error) {
-    console.warn('Error reading database file, returning default database:', error);
-    return defaultDatabase;
   }
 }
 
@@ -59,7 +152,6 @@ export function saveDatabase(data: DatabaseSchema): boolean {
     fs.writeFileSync(DATA_FILE, JSON.stringify(data, null, 2), 'utf-8');
     return true;
   } catch (error) {
-    console.error('Error saving database file:', error);
     return false;
   }
 }

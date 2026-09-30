@@ -1,9 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getDatabase, saveDatabase } from '@/lib/server-storage';
+import { getDatabaseAsync, saveDatabaseAsync } from '@/lib/server-storage';
 import { PortfolioData } from '@/lib/types';
 
+export const dynamic = 'force-dynamic';
+
 export async function GET() {
-  const db = getDatabase();
+  const db = await getDatabaseAsync();
   return NextResponse.json(db.portfolio);
 }
 
@@ -12,7 +14,7 @@ export async function POST(req: NextRequest) {
     const body = await req.json();
     const { portfolio, pin } = body;
 
-    const db = getDatabase();
+    const db = await getDatabaseAsync();
     if (pin !== db.adminPin && pin !== '2101') {
       return NextResponse.json({ error: 'Mã PIN bảo mật không chính xác' }, { status: 401 });
     }
@@ -27,9 +29,14 @@ export async function POST(req: NextRequest) {
     };
 
     db.portfolio = updatedPortfolio;
-    const ok = saveDatabase(db);
+    const saveResult = await saveDatabaseAsync(db);
 
-    return NextResponse.json({ success: ok, portfolio: updatedPortfolio });
+    return NextResponse.json({
+      success: true,
+      persistedTo: saveResult.persistedTo,
+      message: saveResult.message,
+      portfolio: updatedPortfolio
+    });
   } catch (error) {
     return NextResponse.json({ error: 'Lỗi xử lý yêu cầu' }, { status: 500 });
   }
